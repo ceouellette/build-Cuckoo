@@ -8,8 +8,9 @@ banner_message="
 ************************************************
 "
 echo -e "$banner_message"
-sudo apt update
-sudo apt upgrade
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y autoremove
 
 banner_message="
 ************************************************
