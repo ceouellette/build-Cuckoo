@@ -24,10 +24,12 @@ banner_message="
 ************************************************
 "
 echo -e "\x1b[33;1m$banner_message"
-sed -i 's/machines = cuckoo1/machines = /' ~/.cuckoo/conf/virtualbox.conf
-sed -i '/\[cuckoo1\]/,/osprofile =/d' ~/.cuckoo/conf/virtualbox.conf
+
 sed -i 's/mode = headless/mode = gui/' ~/.cuckoo/conf/virtualbox.conf
 while read -r vm ip; do cuckoo machine --add $vm $ip; done < <(vmcloak list vms)
+sed -i 's/machines = cuckoo1, /machines = /' ~/.cuckoo/conf/virtualbox.conf
+sed -i 's/machines = cuckoo1/machines = /' ~/.cuckoo/conf/virtualbox.conf
+sed -i '/\[cuckoo1\]/,/osprofile =/d' ~/.cuckoo/conf/virtualbox.conf
 sed -i "s/internet = none/internet = $adapter/" ~/.cuckoo/conf/routing.conf
 sed -z -i 's/# Enable for remote control of analysis machines inside the web interface.\nenabled = no/# Enable for remote control of analysis machines inside the web interface.\nenabled = yes/' ~/.cuckoo/conf/cuckoo.conf
 sed -z -i 's/\[mongodb\]\nenabled = no/\[mongodb\]\nenabled = yes/' ~/.cuckoo/conf/reporting.conf
