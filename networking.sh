@@ -54,4 +54,4 @@ sudo sysctl -w net.ipv4.ip_forward=1
 
 echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
 echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-sudo apt install iptables-persistent
+sudo apt -y install iptables-persistent
