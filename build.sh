@@ -62,7 +62,7 @@ banner_message="
 "
 echo -e "$banner_message"
 sudo apt -y install virtualenv
-sudo apt -y install virtualenvwrapper 
+sudo apt -y install virtualenvwrapper
 echo "source /usr/share/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
 sudo apt -y install python3-pip
 pip3 completion --bash >> ~/.bashrc
@@ -72,3 +72,13 @@ echo "source ~/.local/bin/virtualenvwrapper.sh" >> ~/.bashrc
 export WORKON_HOME=~/.virtualenvs
 echo "export WORKON_HOME=~/.virtualenvs" >> ~/.bashrc
 echo "export PIP_VIRTUALENV_BASE=~/.virtualenvs" >> ~/.bashrc
+
+banner_message="
+************************************************
+*                                              *
+*       Completed. Run \"source ~/.bashrc\"      *
+*      and then continue to the makeVM.sh      *
+*                                              *
+************************************************
+"
+echo -e "\a$banner_message"
