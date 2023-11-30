@@ -63,7 +63,7 @@ win7function () {
 *                                              *
 ************************************************
 "
-        echo -e "$banner_message"
+        echo -e "\x1b[33;1m$banner_message"
         wget https://archive.org/download/Windows7-iso/win7_64_bit.iso -O ~/win7x64.iso
     fi
     
@@ -74,7 +74,7 @@ win7function () {
 *                                              *
 ************************************************
 "
-    echo -e "$banner_message"
+    echo -e "\x1b[33;1m$banner_message"
     sudo mkdir /mnt/win7
     sudo chown cuckoo:cuckoo /mnt/win7
     sudo mount -o ro,loop ~/win7x64.iso /mnt/win7
@@ -88,7 +88,7 @@ win7function () {
 *                                              *
 ************************************************
 "
-    echo -e "$banner_message"
+    echo -e "\x1b[33;1m$banner_message"
     vmcloak clone $baseName $cloneName
 
         banner_message="
@@ -98,7 +98,7 @@ win7function () {
 *                                              *
 ************************************************
 "
-    echo -e "$banner_message"
+    echo -e "\x1b[33;1m$banner_message"
     vmcloak install $cloneName $deps
     
     banner_message="
@@ -108,7 +108,7 @@ win7function () {
 *                                              *
 ************************************************
 "
-    echo -e "$banner_message"
+    echo -e "\x1b[33;1m$banner_message"
     vmcloak snapshot --count $snapshotCount $cloneName $networkIP
 }
 
@@ -123,7 +123,7 @@ banner_message="
 *                                              *
 ************************************************
 "
-echo -e "$banner_message"
+echo -e "\x1b[33;1m$banner_message"
 virtualenv -p python2.7 ~/cuckoo
 . ~/cuckoo/bin/activate
 

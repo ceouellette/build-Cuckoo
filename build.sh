@@ -7,7 +7,7 @@ banner_message="
 *                                              *
 ************************************************
 "
-echo -e "$banner_message"
+echo -e "\x1b[33;1m$banner_message"
 sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y autoremove
@@ -19,7 +19,7 @@ banner_message="
 *                                              *
 ************************************************
 "
-echo -e "$banner_message"
+echo -e "\x1b[33;1m$banner_message"
 # Required Python libraries to get Cuckoo installed and running properly
 sudo apt -y install python python-pip python-dev libffi-dev libssl-dev
 sudo apt -y install python-virtualenv python-setuptools
@@ -41,7 +41,7 @@ banner_message="
 *                                              *
 ************************************************
 "
-echo -e "$banner_message"
+echo -e "\x1b[33;1m$banner_message"
 # Tcpdump requires root privileges but we don't want Cuckoo to have to run as root
 sudo groupadd pcap
 sudo usermod -a -G pcap cuckoo
@@ -60,7 +60,7 @@ banner_message="
 *                                              *
 ************************************************
 "
-echo -e "$banner_message"
+echo -e "\x1b[33;1m$banner_message"
 sudo apt -y install virtualenv
 sudo apt -y install virtualenvwrapper
 echo "source /usr/share/virtualenvwrapper/virtualenvwrapper.sh" >> ~/.bashrc
@@ -81,4 +81,4 @@ banner_message="
 *                                              *
 ************************************************
 "
-echo -e "\a$banner_message"
+echo -e "\a\x1b[33;1m$banner_message"
