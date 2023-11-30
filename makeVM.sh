@@ -151,6 +151,3 @@ while true; do
             unset version
     esac
 done
-
-
-
