@@ -137,8 +137,9 @@ virtualenv -p python2.7 ~/cuckoo
 pip install -U pip setuptools
 pip install -U cuckoo
 sudo apt -y install git
-git clone https://github.com/ceouellette/VMCloak
-cd VMCloak
+sudo rm -rf ~/VMCloak
+git clone https://github.com/ceouellette/VMCloak ~/VMCloak
+cd ~/VMCloak
 python setup.py install
 cd ..
 vmcloak-vboxnet0
