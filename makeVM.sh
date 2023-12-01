@@ -67,19 +67,21 @@ win7function () {
         wget https://archive.org/download/Windows7-iso/win7_64_bit.iso -O ~/win7x64.iso
     fi
     
-    banner_message="
+    if ! [ -f ~/.vmcloak/image/$baseName.vdi ]; then
+        banner_message="
 ************************************************
 *                                              *
 *             Initializing Base VM             *
 *                                              *
 ************************************************
 "
-    echo -e "\x1b[33;1m$banner_message"
-    sudo mkdir /mnt/win7
-    sudo chown cuckoo:cuckoo /mnt/win7
-    sudo mount -o ro,loop ~/win7x64.iso /mnt/win7
+        echo -e "\x1b[33;1m$banner_message"
+        sudo mkdir /mnt/win7
+        sudo chown cuckoo:cuckoo /mnt/win7
+        sudo mount -o ro,loop ~/win7x64.iso /mnt/win7
 
-    vmcloak init --win7x64 $baseName --cpus $cpus --ramsize $ramsize
+        vmcloak init --win7x64 $baseName --cpus $cpus --ramsize $ramsize
+    fi
 
     banner_message="
 ************************************************
