@@ -1,16 +1,18 @@
 #!/bin/bash
 
-banner_message="
+if ! [ -d ~/.cuckoo/conf ]; then
+    banner_message="
 ************************************************
 *                                              *
 *              Initializing Cuckoo             *
 *                                              *
 ************************************************
 "
-echo -e "\x1b[33;1m$banner_message"
-. ~/cuckoo/bin/activate
-cuckoo init
-cuckoo community
+    echo -e "\x1b[33;1m$banner_message"
+    . ~/cuckoo/bin/activate
+    cuckoo init
+    cuckoo community
+fi
 
 # https://serverfault.com/questions/842964/bash-script-to-retrieve-name-of-ethernet-network-interface
 adapter=$(ip -br l | awk '$1 !~ "lo|vir|wl" {print $1 }')
@@ -46,12 +48,24 @@ echo -e "\x1b[33;1m$banner_message"
 sudo sysctl -w net.ipv4.conf.vboxnet0.forwarding=1
 sudo sysctl -w net.ipv4.conf.$adapter.forwarding=1
 
+# Reverting iptables to default before adding Cuckoo global routing rules
+sudo iptables -F
+sudo iptables -X
+sudo iptables -t nat -F
+sudo iptables -t nat -X
+sudo iptables -t mangle -F
+sudo iptables -t mangle -X
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+
 sudo iptables -t nat -A POSTROUTING -o $adapter -s 192.168.56.0/24 -j MASQUERADE
 sudo iptables -P FORWARD DROP
 sudo iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
 sudo iptables -A FORWARD -s 192.168.56.0/24 -j ACCEPT
 sudo iptables -A FORWARD -s 192.168.56.0/24 -d 192.168.56.0/24 -j ACCEPT
 sudo iptables -A FORWARD -j LOG
+
 echo 1 | sudo tee -a /proc/sys/net/ipv4/ip_forward
 sudo sysctl -w net.ipv4.ip_forward=1
 
