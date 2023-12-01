@@ -14,7 +14,12 @@ win7function () {
     while true; do
         read -p "Enter Clone VM Name: " cloneName
         if ! [[ "$cloneName" =~ \  ]]; then
-            break
+            if [ -f ~/.vmcloak/image/$cloneName.vdi ]; then
+                echo "A VM by that name already exists"
+                unset cloneName
+            else
+                break
+            fi
         else
             echo "Clone VM Name cannot contain spaces"
             unset cloneName
