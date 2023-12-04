@@ -135,8 +135,11 @@ virtualenv -p python2.7 ~/cuckoo
 . ~/cuckoo/bin/activate
 
 pip install -U pip setuptools
-pip install -U cuckoo
 sudo apt -y install git
+sudo rm -rf ~/build-Cuckoo/cuckoo
+git clone https://github.com/ceouellette/cuckoo ~/build-Cuckoo/cuckoo
+cd ~/build-Cuckoo/cuckoo
+python setup.py install
 sudo rm -rf ~/VMCloak
 git clone https://github.com/ceouellette/VMCloak ~/VMCloak
 cd ~/VMCloak
