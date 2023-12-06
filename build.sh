@@ -1,5 +1,20 @@
 #!/bin/bash
 
+if [[ "$EUID" -ne 0 ]]; then
+    banner_message="
+************************************************
+*                                              *
+*       This Script Must be Ran as Root.       *
+*                  Please Run:                 *
+*       \"$ sudo ~/build-Cuckoo/build.sh\"       *
+*                 To Try Again                 *
+*                                              *
+************************************************
+"
+    echo -e "\x1b[33;1m$banner_message"
+    exit 1
+fi
+
 banner_message="
 ************************************************
 *                                              *
