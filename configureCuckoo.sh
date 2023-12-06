@@ -34,6 +34,7 @@ sed -i 's/machines = cuckoo1/machines = /' ~/.cuckoo/conf/virtualbox.conf
 sed -i '/\[cuckoo1\]/,/osprofile =/d' ~/.cuckoo/conf/virtualbox.conf
 sed -i "s/internet = none/internet = $adapter/" ~/.cuckoo/conf/routing.conf
 sed -z -i 's/# Enable for remote control of analysis machines inside the web interface.\nenabled = no/# Enable for remote control of analysis machines inside the web interface.\nenabled = yes/' ~/.cuckoo/conf/cuckoo.conf
+sed -i 's/upload_max_size = 134217728/upload_max_size = 1073741824/" ~/.cuckoo/conf/cuckoo.conf
 sed -z -i 's/\[mongodb\]\nenabled = no/\[mongodb\]\nenabled = yes/' ~/.cuckoo/conf/reporting.conf
 
 banner_message="
