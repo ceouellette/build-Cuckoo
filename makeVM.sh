@@ -163,6 +163,7 @@ virtualenv -p python2.7 ~/cuckoo
 
 pip install -U pip setuptools
 sudo apt -y install git
+pip uninstall -y cuckoo
 sudo rm -rf ~/.cuckoo
 sudo rm -rf ~/build-Cuckoo/cuckoo
 git clone https://github.com/ceouellette/cuckoo ~/build-Cuckoo/cuckoo
