@@ -135,21 +135,6 @@ if [[ "$EUID" == 0 ]]; then
     exit 1
 fi
 
-if [[ "$VIRTUAL_ENV" == "" ]]; then
-    banner_message="
-************************************************
-*                                              *
-*  This Script Must be Ran in the Cuckoo venv. *
-*                  Please Run:                 *
-*          \"$ . ~/cuckoo/bin/activate\"         *
-*                 And Try Again                *
-*                                              *
-************************************************
-"
-    echo -e "\x1b[33;1m$banner_message"
-    exit 1
-fi
-
 banner_message="
 ************************************************
 *                                              *
